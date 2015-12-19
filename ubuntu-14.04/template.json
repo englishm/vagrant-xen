@@ -55,7 +55,8 @@
         {
             "type": "vagrant",
             "compression_level": 9,
-            "output": "boxes/ubuntu-14.04-amd64.box"
+            "vagrantfile_template": "ubuntu-14.04/Vagrantfile",
+            "output": "boxes/ubuntu-14.04-amd64-xen.box"
         }
     ],
     "provisioners": [
@@ -67,8 +68,12 @@
                     "scripts": [
                         "scripts/base.sh",
                         "scripts/base-ubuntu.sh",
+                        "scripts/packages.sh",
+                        "scripts/xen.sh",
                         "scripts/vagrant.sh",
                         "scripts/virtualbox.sh",
+                        "scripts/networking.sh",
+                        "scripts/finish.sh",
                         "scripts/zerodisk.sh"
                     ]
                 }
