@@ -14,14 +14,7 @@
 # PERFORMANCE OF THIS SOFTWARE.
 #
 
-help:
-	@grep '^[^#[:space:]]' Makefile
-	@echo Pattern targets:
-	@for n in $$(ls -lR1 */Vagrantfile) ; do echo "\t$$(dirname $$n)" ; done
+all: boxes/ubuntu-14.04-amd64-xen.box
 
-%-box: # build vagrant box
-	packer build $*/template.json
-	vagrant box add -f $*-xen boxes/$*-amd64.box
-
-%-vagrant: # boot and provision vagrant box
-	cd $* && vagrant up --provision
+boxes/ubuntu-14.04-amd64-xen.box:
+	packer build ubuntu-14.04/template.json
